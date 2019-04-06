@@ -12,7 +12,7 @@ const createNoteController = function (body) {
         );
 
         note.save()
-            .then(() => resolve())
+            .then((newNote) => resolve(newNote))
             .catch((e) => reject(e))
     });
 };

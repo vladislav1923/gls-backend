@@ -3,6 +3,7 @@ const router = express.Router();
 const getNotesListController = require('../controllers/get-notes-list.controller');
 const createNoteController = require('../controllers/create-note.controller');
 const updateNoteController = require('../controllers/update-note.controller');
+const deleteNoteController = require('../controllers/delete-note.controller');
 
 router.get('/', function (request, response) {
     getNotesListController(request.query)
@@ -22,9 +23,9 @@ router.get('/', function (request, response) {
 
 router.post('/', function (request, response) {
     createNoteController(request.body)
-        .then(() => {
+        .then((newNote) => {
             response.setHeader('statusCode', 200);
-            response.send();
+            response.send(newNote);
         })
         .catch((e) => {
             response.setHeader('statusCode', 400);
@@ -34,6 +35,18 @@ router.post('/', function (request, response) {
 
 router.put('/', function (request, response) {
     updateNoteController(request.body)
+        .then((updatedNote) => {
+            response.setHeader('statusCode', 200);
+            response.send(updatedNote);
+        })
+        .catch((e) => {
+            response.setHeader('statusCode', 400);
+            response.send(e);
+        });
+});
+
+router.delete('/', function (request, response) {
+    deleteNoteController(request.query)
         .then(() => {
             response.setHeader('statusCode', 200);
             response.send();
