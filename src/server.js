@@ -12,6 +12,7 @@ require('./app/models/note.model');
 
 const indexRoute = require('./app/routes/index.route');
 const notesApiRoutes = require('./app/routes/notes.route');
+const parseApiRoutes = require('./app/routes/parse.route');
 
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname,  'dist')));
 
 app.use('/', indexRoute);
 app.use('/notes', notesApiRoutes);
+app.use('/parse', parseApiRoutes);
 
 app.listen(port, () => {
     console.log('We are live on ' + port);

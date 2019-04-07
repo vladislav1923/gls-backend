@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const getNotesListController = require('../controllers/get-notes-list.controller');
-const createNoteController = require('../controllers/create-note.controller');
-const updateNoteController = require('../controllers/update-note.controller');
-const deleteNoteController = require('../controllers/delete-note.controller');
+const getNotesListController = require('../controllers/notes/get-notes-list.controller');
+const createNoteController = require('../controllers/notes/create-note.controller');
+const updateNoteController = require('../controllers/notes/update-note.controller');
+const deleteNoteController = require('../controllers/notes/delete-note.controller');
 
 router.get('/', function (request, response) {
     getNotesListController(request.query)

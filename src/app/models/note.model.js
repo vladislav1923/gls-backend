@@ -1,24 +1,29 @@
 const mongoose = require('mongoose');
 const noteModel = new mongoose.Schema({
-    id: {},
     url: {
         type: String,
         required: [true, 'Не указана ссылка на материал']
     },
-    name: {
+    title: {
         type: String,
         required: [true, 'Не указано название статьи']
     },
     description: {
         type: String
     },
+    language: {
+        type: String
+    },
+    keywords: {
+        type: [String]
+    },
+    imageUrl: {
+        type: String
+    },
     createDate: {
         type: Date,
         default: Date.now()
     },
-    imagePath: {
-        type: String
-    }
 });
 
 mongoose.model('noteModel', noteModel);
