@@ -5,7 +5,7 @@ const getNotesListController = function (queryParams) {
     return new Promise((resolve, reject) => {
         NoteModel.find()
             .then((data) => resolve(data))
-            .catch(() => reject())
+            .catch((e) => reject(e))
     });
 };
 

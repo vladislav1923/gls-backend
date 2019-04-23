@@ -3,11 +3,15 @@ const NoteModel = mongoose.model('noteModel');
 
 const createNoteController = function (body) {
     return new Promise((resolve, reject) => {
-        let note = new NoteModel(
-            {
+        let note = new NoteModel({
                 url: body.url,
-                name: body.name,
-                description: body.description
+                title: body.title,
+                description: body.description,
+                language: body.language,
+                keywords: body.keywords,
+                imageUrl: body.imageUrl,
+                group: body.group,
+                isClicked: body.isClicked
             }
         );
 

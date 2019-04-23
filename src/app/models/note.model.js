@@ -20,6 +20,12 @@ const noteModel = new mongoose.Schema({
     imageUrl: {
         type: String
     },
+    group: {
+        type: String
+    },
+    isClicked: {
+        type: Boolean
+    },
     createDate: {
         type: Date,
         default: Date.now()

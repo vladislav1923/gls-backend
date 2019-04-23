@@ -5,8 +5,13 @@ const updateNoteController = function (body) {
     return new Promise((resolve, reject) => {
         NoteModel.findOneAndUpdate({_id: body._id}, {
             url: body.url,
-            name: body.name,
-            description: body.description
+            title: body.title,
+            description: body.description,
+            language: body.language,
+            keywords: body.keywords,
+            imageUrl: body.imageUrl,
+            group: body.group,
+            isClicked: body.isClicked
         }, {new: true})
             .then((updatedNote) => resolve(updatedNote))
             .catch((e) => reject(e));
