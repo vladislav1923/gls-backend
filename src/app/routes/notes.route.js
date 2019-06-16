@@ -22,6 +22,11 @@ router.get('/', function (request, response) {
 });
 
 router.post('/', function (request, response) {
+    if (!request.body) {
+        response.setHeader('statusCode', 400);
+        response.send();
+    }
+
     createNoteController(request.body)
         .then((newNote) => {
             response.setHeader('statusCode', 200);
@@ -47,9 +52,9 @@ router.put('/', function (request, response) {
 
 router.delete('/', function (request, response) {
     deleteNoteController(request.query)
-        .then(() => {
+        .then((deletedNote) => {
             response.setHeader('statusCode', 200);
-            response.send();
+            response.send(deletedNote);
         })
         .catch((e) => {
             response.setHeader('statusCode', 400);

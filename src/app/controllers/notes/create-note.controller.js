@@ -10,7 +10,6 @@ const createNoteController = function (body) {
                 language: body.language,
                 keywords: body.keywords,
                 imageUrl: body.imageUrl,
-                group: body.group,
                 isClicked: body.isClicked
             }
         );
