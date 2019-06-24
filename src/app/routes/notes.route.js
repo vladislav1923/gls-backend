@@ -4,6 +4,7 @@ const getNotesListController = require('../controllers/notes/get-notes-list.cont
 const createNoteController = require('../controllers/notes/create-note.controller');
 const updateNoteController = require('../controllers/notes/update-note.controller');
 const deleteNoteController = require('../controllers/notes/delete-note.controller');
+const getKeywordsListController = require('../controllers/notes/get-keywords-list.controller');
 
 router.get('/', function (request, response) {
     getNotesListController(request.query)
@@ -59,6 +60,22 @@ router.delete('/', function (request, response) {
         .catch((e) => {
             response.setHeader('statusCode', 400);
             response.send(e);
+        });
+});
+
+router.get('/keywords', function (request, response) {
+    getKeywordsListController()
+        .then((data) => {
+            response.setHeader('statusCode', 200);
+            response.send(data);
+        })
+        .catch((e) => {
+            response.setHeader('statusCode', 400);
+            const errorsMessages = Object.keys(e.errors)
+                .map(key => e.errors[key].message)
+                .join(', ');
+
+            response.send({message: errorsMessages});
         });
 });
 
